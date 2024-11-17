@@ -27,11 +27,11 @@ describe('FuncionarioList.vue', () => {
     render(FuncionarioList);
 
     // Verificar se o componente exibe a mensagem "Carregando..."
-    expect(screen.getByText(/carregando/i)).toBeInTheDocument();
+    expect(screen.getByText(/carregando/i)).toBeTruthy();
 
     // Esperar a requisição e a lista ser carregada
-    await waitFor(() => expect(screen.getByText('João Silva')).toBeInTheDocument());
-    expect(screen.getByText('Maria Oliveira')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('João Silva')).toBeTruthy());
+    expect(screen.getByText('Maria Oliveira')).toBeTruthy();
   });
 
   it('deve exibir uma mensagem de erro caso a requisição falhe', async () => {
@@ -42,7 +42,7 @@ describe('FuncionarioList.vue', () => {
     render(FuncionarioList);
 
     // Esperar a requisição falhar
-    await waitFor(() => expect(screen.getByText('Erro ao carregar os dados')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('Erro ao carregar os dados')).toBeTruthy());
   });
 
   it('deve exibir a mensagem "Carregando..." enquanto os dados estão sendo carregados', async () => {
@@ -58,10 +58,10 @@ describe('FuncionarioList.vue', () => {
     render(FuncionarioList);
 
     // Verificar se "Carregando..." é exibido inicialmente
-    expect(screen.getByText('Carregando...')).toBeInTheDocument();
+    expect(screen.getByText('Carregando...')).toBeTruthy();
 
     // Esperar a requisição e os dados serem exibidos
-    await waitFor(() => expect(screen.getByText('João Silva')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('João Silva')).toBeTruthy());
 
     // Verificar se "Carregando..." desapareceu
     expect(screen.queryByText('Carregando...')).toBeNull();
